@@ -1,0 +1,5 @@
+.*.sw*
+objs
+.DS_Store
+.DS_STORE
+tmp
