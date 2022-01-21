@@ -1,6 +1,6 @@
 .*.sw*
 objs
-push_swap
+so_long
 checker
 .DS_Store
 .DS_STORE
