@@ -1,5 +1,7 @@
 .*.sw*
 objs
+push_swap
+checker
 .DS_Store
 .DS_STORE
 tmp
