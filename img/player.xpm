@@ -1,0 +1,35 @@
+/* XPM */
+static char *vais_L[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 13 1 ",
+"  c black",
+". c #EAEAEA",
+"X c #6994E7",
+"o c #E0E769",
+"O c #656565",
+"+ c #B2B2B2",
+"@ c #9C9A9A",
+"# c #CBD253",
+"$ c #4A75B0",
+"% c #E1E1E1",
+"& c gray58",
+"* c #B8B5B5",
+"= c #424141",
+/* pixels */
+"OOOOOOOOOO%%%%*O",
+"OOOOOOOOOO%$$$*O",
+"OOOOo@@@@@@@@&OO",
+"OOOOo@@@$XXX$OOO",
+"OOOOOOO$..XX$O$$",
+"OoXXXX#....XX$$O",
+"...XX...++...ooO",
+"X.X..X.X++X.Xo=O",
+"X.X..X.X++X.Xo=O",
+"...XX...++...ooO",
+"OoXXXXo....XX$$O",
+"OOOOOOOX..XX$O$$",
+"OOOOo+++XXXX$OOO",
+"OOOOo++++++++&OO",
+"OOOOOOOOOO%XXX*O",
+"OOOOOOOOOO%%%%*O"
+};
