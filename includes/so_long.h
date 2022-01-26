@@ -20,13 +20,28 @@
 # define EXIT_SUCCES    0
 # define EXTENSION_NAME ".ber"
 # define EXTENSION_LEN  4
+# define MAP_EMPTY          -1
+# define MALLOC_ERROR       -2
+# define WRONG_EXTENSION    -3
+# define MAP_SMALL          -4
+# define NO_WALL            -5
+# define NO_RECTANGLE       -6
+# define WALL               '1'
+
+
+typedef struct  s_map
+{
+    char            **map;
+    char            **player;
+    int              map_line;
+}                   t_map;
 
 
 
-#include "libft.h"
-#include "get_next_line.h"
+#include "libftprintf.h"
 #include "../mlx_linux/mlx.h"
 #include <stdio.h>
+#include <stddef.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/types.h>
