@@ -40,10 +40,13 @@
 # define ERR_NOT_RECTANGLE          6
 # define ERR_MSG_NOT_RECTANGLE      "The map isn't a rectangle"
 
+# define ERR_BAD_FD                 7
+# define ERR_MSG_BAD_FD             "The FD is not valid"
+
 # define WALL                       '1'
 
 #include "libftprintf.h"
-#include "../mlx_linux/mlx.h"
+#include "../mlx/mlx.h"
 #include <stdio.h>
 #include <stddef.h>
 #include <errno.h>

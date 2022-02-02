@@ -37,11 +37,13 @@ LIB = $(PATH_LIB)/libftprintf.a
 INCLUDES_LIB = ./$(PATH_LIB)/includes
 LIB_NAME = ftprintf
 
-PATH_LIBMLX = ./mlx_linux
-LIBMLX = $(PATH_LIBMLX)/libmlx_Linux.a
+PATH_LIBMLX = ./mlx
+LIBMLX = $(PATH_LIBMLX)/libmlx.a
 INCLUDES_LIBMLX = $(PATH_LIBMLX)
-LIBMLX_NAME = mlx_Linux
+LIBMLX_NAME = mlx
 
+MLXLIB = -lm -Lmlx -lmlx -framework OpenGL -framework AppKit
+#-lft
 
 #PATH_SOURCES 
 PATH_SRCS = srcs
@@ -73,7 +75,7 @@ ONELINE = \e[1A\r
 all: $(NAME)
 
 $(NAME): $(LIB) $(LIBMLX) $(PATH_OBJS) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -I $(INCLUDES) -I $(INCLUDES_LIBMLX) -I $(INCLUDES_LIB) -L $(PATH_LIB) -l$(LIB_NAME) -L $(PATH_LIBMLX) -l$(LIBMLX_NAME) -lXext -lX11 -lm -lbsd -o $@
+	$(CC) $(CFLAGS) $(MLXLIB) $(OBJS) -I $(INCLUDES) -I $(INCLUDES_LIBMLX) -I $(INCLUDES_LIB) -L $(PATH_LIB) -l$(LIB_NAME) -L $(PATH_LIBMLX) -l$(LIBMLX_NAME) -o $@
 	printf "$(GREEN)$@ IS READY\n$(NC)"						#./mlx_linux/libmlx_Linux.a												/usr/lib/libXext.a					
 
 $(LIB): FORCE

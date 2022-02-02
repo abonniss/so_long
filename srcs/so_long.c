@@ -12,10 +12,11 @@
 
 #include  "so_long.h"
 
-int exit_routine(t_map **game, int error_nbr)
+int exit_routine(t_game **game, int error_nbr)
 {
 	const char *error_msgs[] = {NULL, ERR_MSG_MAP_EMPTY, ERR_MSG_MALLOC, ERR_MSG_WRONG_EXTENSION,
-								ERR_MSG_TOO_SMALL, ERR_MSG_NO_WALL, ERR_MSG_NOT_RECTANGLE};
+								ERR_MSG_TOO_SMALL, ERR_MSG_NO_WALL, ERR_MSG_NOT_RECTANGLE,
+								ERR_MSG_BAD_FD};
 	
 	ft_putendl_fd((char*)error_msgs[error_nbr], STDERR_FILENO);
 	free(*game);
@@ -23,31 +24,27 @@ int exit_routine(t_map **game, int error_nbr)
 	return (EXIT_FAILURE);
 }
 
-void free_map(t_map **game, int error_nbr)
+void free_map(char **map)
 {
 	size_t i;
 
 	i = 0;
-	while (i <= (*game)->map_line)
+	while (map[i] != NULL)
 	{
-		free((*game)->map[i]);
+		free(map[i]);
 		++i;
 	}
-	exit_routine(game, error_nbr);
 }
 
-bool check_file_extension(t_map **game, const char *file_name, int *fd)
-{
-	
+bool check_file_extension(t_game **game, const char *file_name)
+{	
 	size_t name_len;
 	size_t i;
 
-	*fd = open(file_name, O_RDONLY);
-	if (*fd == BAD_FD || file_name == NULL || ft_strlen(file_name) <= EXTENSION_LEN)
-		return (false);
 	name_len = ft_strlen(file_name);
 	i = 0;
-	//remplacer par strncmp
+	if (name_len <= EXTENSION_LEN)
+		exit_routine(game, ERR_WRONG_EXTENSION);
 	while (i <= EXTENSION_LEN)
 	{
 		if ((file_name[(name_len - EXTENSION_LEN) + i] != EXTENSION_NAME[i]))
@@ -60,11 +57,11 @@ bool check_file_extension(t_map **game, const char *file_name, int *fd)
 	return (true);
 }
 
-t_map *create_map(void)
+t_game *create_map(void)
 {
-	t_map *new_game;
+	t_game *new_game;
 
-	new_game = ft_calloc(1, sizeof(t_map));
+	new_game = ft_calloc(1, sizeof(t_game));
 	if (new_game == NULL)
 		return (NULL);
 	new_game->map = NULL;
@@ -72,12 +69,16 @@ t_map *create_map(void)
 	return (new_game);
 }
 
-int count_map_line(t_map **game, int fd)
+int count_map_line(const char *file_name, t_game **game)
 {
 	char	*str;
 	int		i;
+	int 	fd;
 	
 	i = 0;
+	fd = open(file_name, O_RDONLY);
+	if (fd == BAD_FILE_DESCRIPTOR)
+		exit_routine(game, ERR_BAD_FD);
 	while (ft_get_next_line(fd, &str) > 0)
 		++i;
 	close(fd);
@@ -89,18 +90,18 @@ int count_map_line(t_map **game, int fd)
 	return (i);
 }
 
-char **get_memory_space_for_tab_line(t_map **game, size_t tab_line)
+char **get_memory_space_for_tab_line(t_game **game, size_t map_line)
 {
-	char **tab;
+	char **map;
 
-	tab = (char **)malloc(sizeof(char*) * tab_line + 1);
-	if (tab == NULL)
+	map = (char **)malloc(sizeof(char*) * map_line + 1);
+	if (map== NULL)
 		exit_routine(game, ERR_MALLOC);
-	tab[tab_line] = NULL;
-	return (tab);
+	map[map_line] = NULL;
+	return (map);
 }
 
-void check_first_last_line(t_map **game)
+void check_first_last_line(t_game **game)
 {
 	size_t	line;
 	size_t	index;
@@ -113,7 +114,8 @@ void check_first_last_line(t_map **game)
 		{
 			if ((*game)->map[line][index] != WALL)
 			{
-				free_tab_str(game, ERR_NO_WALL);
+				free_map((*game)->map);
+				exit_routine(game, ERR_NO_WALL);
 			}
 			++index;
 		}
@@ -123,7 +125,7 @@ void check_first_last_line(t_map **game)
 	}
 }
 
-void check_len_line(t_map **game, size_t len_line)
+void check_len_line(t_game **game, size_t len_line)
 {
 	size_t i;
 
@@ -131,61 +133,92 @@ void check_len_line(t_map **game, size_t len_line)
 	while ((*game)->map[i] != NULL)
 	{
 		if (ft_strlen((*game)->map[i]) != len_line)
-			free_tab_str(game, ERR_NOT_RECTANGLE);
+		{
+			free_map((*game)->map);
+			exit_routine(game, ERR_NOT_RECTANGLE);
+		}
 		++i;
 	}
 }
 
-bool is_map_correct(t_map **game)
+void check_first_last_char(char **map, size_t last_char, t_game **game)
+{
+	size_t	line;
+	size_t	first_char;
+
+	line = 0;
+	first_char = 0;
+	while (map[line] != NULL)
+	{
+		if (map[line][first_char] != WALL || map[line][last_char] != WALL)
+		{
+			free_map(map);
+			exit_routine(game, ERR_NO_WALL);
+		}
+		++line;
+	}
+}
+
+void is_map_correct(t_game **game)
 {
 	size_t i;
 	size_t len_map_line;
 
 	i = 0;
 	len_map_line = ft_strlen((*game)->map[i]);
-	check_first_last_line(game);
 	check_len_line(game, len_map_line);
-	// while ((*game)->map[i] != NULL)
-	// {
-	// 	if (i == 0)
-	// 		if (wall_check)
-	// }
-	return (true);
+	check_first_last_line(game);
+	check_first_last_char((*game)->map, len_map_line - 1, game);
+
 }
 
-void parse_and_check_file_content(const char *file_name, int *fd, t_map **game)
+char **fill_map(const char *file_name, char **map, t_game **game)
 {
-	size_t	tab_line;
-	size_t	i;
 	char 	*str;
-
+	size_t	i;
+	int		fd;
+	
 	i = 0;
-	tab_line = count_map_line(game, *fd);
-	(*game)->map = get_memory_space_for_tab_line(game, tab_line);
-	*fd = open(file_name, O_RDONLY);
-	while (ft_get_next_line(*fd, &str) > 0 && i <= tab_line)
+	fd = open(file_name, O_RDONLY);
+	str = NULL;
+	while (ft_get_next_line(fd, &str) > 0)
 	{
-		(*game)->map[i] = ft_strdup(str);
-		if ((*game)->map[i] == NULL)
-			free_tab_str(game, ERR_MALLOC);
+		map[i] = ft_strdup(str);
+		if (map[i] == NULL)
+		{
+			free_map(map);
+			exit_routine(game, ERR_MALLOC);
+		}
 		++i;
 	}
+	close(fd);
+	return (map);
+}
+
+void get_map_from_file(const char *file_name, t_game **game)
+{
+	size_t	map_line;
+	char	**map;
+
+	map_line = count_map_line(file_name, game);
+	map = get_memory_space_for_tab_line(game, map_line);
+	if (map == NULL)
+		exit_routine(game, ERR_MALLOC);
+	check_file_extension(game, file_name);
+	(*game)->map = fill_map(file_name, map, game);
 	is_map_correct(game);
+
 	
 }
 
 int main (int argc, char **argv)
 {
-	int		fd;
-	t_map	*game;
+	t_game	*game;
 
-	fd = 0;
 	game = create_map();
-	if (argc != 2 || check_file_extension(&game, argv[1], &fd) != true || game == NULL)
-	{
+	if (argc != 2 || game == NULL)
 		return (EXIT_FAILURE);
-	}
-	parse_and_check_file_content(argv[1], &fd, &game);
+	get_map_from_file(argv[1], &game);
 
 
 
