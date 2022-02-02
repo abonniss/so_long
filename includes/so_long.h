@@ -13,30 +13,34 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define WINDOW_WIDHT 	600
-# define WINDOW_HEIGHT 	300
-# define MLX_ERROR	 	1
-# define EXIT_FAILURE   -1
-# define EXIT_SUCCES    0
-# define EXTENSION_NAME ".ber"
-# define EXTENSION_LEN  4
-# define MAP_EMPTY          -1
-# define MALLOC_ERROR       -2
-# define WRONG_EXTENSION    -3
-# define MAP_SMALL          -4
-# define NO_WALL            -5
-# define NO_RECTANGLE       -6
-# define WALL               '1'
+# define WINDOW_WIDHT 	            600
+# define WINDOW_HEIGHT 	            300
+# define MLX_ERROR	 	            1
+# define EXIT_FAILURE               -1
+# define EXIT_SUCCES                0
+# define EXTENSION_NAME             ".ber"
+# define EXTENSION_LEN              4
+# define BAD_FILE_DESCRIPTOR        -1
 
+# define ERR_MAP_EMPTY              1
+# define ERR_MSG_MAP_EMPTY          "The map is empty"
 
-typedef struct  s_map
-{
-    char            **map;
-    char            **player;
-    int              map_line;
-}                   t_map;
+# define ERR_MALLOC                 2
+# define ERR_MSG_MALLOC             "Malloc allocation error"
 
+# define ERR_WRONG_EXTENSION        3
+# define ERR_MSG_WRONG_EXTENSION    "Incorrect extension"
 
+# define ERR_TOO_SMALL              4
+# define ERR_MSG_TOO_SMALL          "The map you entered doesn't have enough line"
+
+# define ERR_NO_WALL                5
+# define ERR_MSG_NO_WALL            "The map has has a breach"
+
+# define ERR_NOT_RECTANGLE          6
+# define ERR_MSG_NOT_RECTANGLE      "The map isn't a rectangle"
+
+# define WALL                       '1'
 
 #include "libftprintf.h"
 #include "../mlx_linux/mlx.h"
@@ -46,6 +50,13 @@ typedef struct  s_map
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+
+typedef struct      s_game
+{
+    char            **map;
+    char            **player;
+    size_t            map_line;
+}                   t_game;
 
 
 #endif
