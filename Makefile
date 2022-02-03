@@ -50,6 +50,11 @@ PATH_SRCS = srcs
 
 #SOURCES
 SRCS += so_long.c
+SRCS += file_checker.c
+SRCS += map_filler.c
+SRCS += map_checker.c
+SRCS += exit_routines.c
+SRCS += print_map.c
 
 #HEADERS
 HEADERS += so_long.h

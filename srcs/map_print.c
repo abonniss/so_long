@@ -36,7 +36,6 @@ int main (void)
 	img_door = mlx_xpm_file_to_image(mlx_ptr, xpm_data_door, &img_width, &img_height);
 	if (img_wall == NULL || img_path == NULL)
 	{
-		ft_printf("NULL ICI");
 		mlx_destroy_display(mlx_ptr);
 		free(mlx_ptr);
 	}
