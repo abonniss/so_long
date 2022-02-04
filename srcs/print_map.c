@@ -12,33 +12,64 @@
 
 #include  "so_long.h"
 
-// void get_image(t_game **game)
-// {
-    	// char	*xpm_data_path = "./img/aub.xpm";
-	    // char	*xpm_data_wall = "./img/choco.xpm";
-	    // char	*xpm_data_player = "./img/player.xpm";
-	    // char	*xpm_data_door = "./img/door.xpm";
-	    // int		img_width = 100;
-	    // int		img_height = 100;
-//     img_path = mlx_xpm_file_to_image(mlx_ptr, xpm_data_path, &img_width, &img_height);
-// 	img_wall = mlx_xpm_file_to_image(mlx_ptr, xpm_data_wall, &img_width, &img_height);
-// 	img_player = mlx_xpm_file_to_image(mlx_ptr, xpm_data_player, &img_width, &img_height);
-// 	img_door = mlx_xpm_file_to_image(mlx_ptr, xpm_data_door, &img_width, &img_height);
-// 	if (img_wall == NULL || img_path == NULL)
-// 	{
-// 		mlx_destroy_display(mlx_ptr);
-// 		free(mlx_ptr);
-// 	}
-// }
+void get_images(t_game **game)
+{
+    (*game)->img_path = mlx_xpm_file_to_image((*game)->mlx_ptr, (*game)->xpm_data_path, &(*game)->img_width, &(*game)->img_height);
+	(*game)->img_wall = mlx_xpm_file_to_image((*game)->mlx_ptr, (*game)->xpm_data_wall, &(*game)->img_width, &(*game)->img_height);
+	(*game)->img_player = mlx_xpm_file_to_image((*game)->mlx_ptr, (*game)->xpm_data_player, &(*game)->img_width, &(*game)->img_height);
+	(*game)->img_door = mlx_xpm_file_to_image((*game)->mlx_ptr, (*game)->xpm_data_door, &(*game)->img_width, &(*game)->img_height);
+	(*game)->img_collec = mlx_xpm_file_to_image((*game)->mlx_ptr, (*game)->xpm_data_collec, &(*game)->img_width, &(*game)->img_height);
+}
+
+void display_map(t_game **game)
+{
+	char **map;
+	size_t i;
+	size_t x;
+	size_t y;
+	size_t line;
+
+	map = (*game)->map;
+	line = 0;
+	y = 0;
+	while (map[line] != NULL)
+	{
+		i = 0;
+		x = 0;
+		while (map[line][i] != '\0')
+		{
+			if (map[line][i] == '1')
+				mlx_put_image_to_window((*game)->mlx_ptr, (*game)->mlx_win, (*game)->img_wall, x, y);
+			else if (map[line][i] == '0')
+				mlx_put_image_to_window((*game)->mlx_ptr, (*game)->mlx_win, (*game)->img_path, x, y);
+			else if (map[line][i] == 'P')
+				mlx_put_image_to_window((*game)->mlx_ptr, (*game)->mlx_win, (*game)->img_player, x, y);
+			else if (map[line][i] == 'E')
+				mlx_put_image_to_window((*game)->mlx_ptr, (*game)->mlx_win, (*game)->img_door, x, y);
+			else if (map[line][i] == 'C')
+				mlx_put_image_to_window((*game)->mlx_ptr, (*game)->mlx_win, (*game)->img_collec, x, y);
+			x += 16;
+			++i;
+		}
+		y += 16;
+		++line;
+	}
+}
 
 
 void print_map(t_game **game)
 {
     (*game)->mlx_ptr = mlx_init();
-	// if ((*game)->mlx_ptr == NULL)
-	// 	return (MLX_ERROR);
+	if ((*game)->mlx_ptr == NULL)
+		return (exit_mlx(game));
     (*game)->mlx_win = mlx_new_window((*game)->mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, 
 				"My First Window");
-    // get_images(game);
+	if ((*game)->mlx_win == NULL)
+		return (exit_mlx(game));
+    get_images(game);
+	display_map(game);
+	hook_event(game);
+
+	mlx_loop((*game)->mlx_ptr);
     
 }

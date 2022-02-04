@@ -42,7 +42,7 @@ LIBMLX = $(PATH_LIBMLX)/libmlx.a
 INCLUDES_LIBMLX = $(PATH_LIBMLX)
 LIBMLX_NAME = mlx
 
-MLXLIB = -lm -Lmlx -lmlx -framework OpenGL -framework AppKit
+MLXLIB =  -lm -L/usr/X11/lib -lX11 -lXext -framework OpenGL -framework AppKit
 #-lft
 
 #PATH_SOURCES 
@@ -55,6 +55,8 @@ SRCS += map_filler.c
 SRCS += map_checker.c
 SRCS += exit_routines.c
 SRCS += print_map.c
+SRCS += player.c
+SRCS += hook.c
 
 #HEADERS
 HEADERS += so_long.h
@@ -80,7 +82,7 @@ ONELINE = \e[1A\r
 all: $(NAME)
 
 $(NAME): $(LIB) $(LIBMLX) $(PATH_OBJS) $(OBJS)
-	$(CC) $(CFLAGS) $(MLXLIB) $(OBJS) -I $(INCLUDES) -I $(INCLUDES_LIBMLX) -I $(INCLUDES_LIB) -L $(PATH_LIB) -l$(LIB_NAME) -L $(PATH_LIBMLX) -l$(LIBMLX_NAME) -o $@
+	$(CC) $(CFLAGS) $(OBJS) -I $(INCLUDES) -I $(INCLUDES_LIBMLX) -I $(INCLUDES_LIB) -L $(PATH_LIB) -l$(LIB_NAME) -L $(PATH_LIBMLX) -l$(LIBMLX_NAME) $(MLXLIB) -o $@
 	printf "$(GREEN)$@ IS READY\n$(NC)"						#./mlx_linux/libmlx_Linux.a												/usr/lib/libXext.a					
 
 $(LIB): FORCE

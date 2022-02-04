@@ -46,19 +46,19 @@ void check_len_line(char **map, size_t len_line)
 	}
 }
 
-void check_map_component(char **map)
+void check_map_component(char **map, size_t last_char)
 {
 	size_t i;
 	size_t line;
 
 	line = 0;
-	i = 0;
 	while (map[line] != NULL)
 	{
-		while (map[line][i] != '\0')
+		i = 0;
+		while (i < last_char)
 		{
-			if (map[line][i] != WALL || map[line][i] != EMPTY || map[line][i] != PLAYER
-				|| map[line][i] != COLLECTIBLE || map[line][i] != EXIT)
+			if (map[line][i] != WALL && map[line][i] != EMPTY && map[line][i] != PLAYER
+				&& map[line][i] != COLLECTIBLE && map[line][i] != EXIT)
 				exit_routine(map, ERR_WRG_COMP);
 			++i;
 		}
@@ -73,20 +73,20 @@ void check_player(char **map)
 	size_t nbr_player;
 
 	line = 0;
-	i = 0;
 	nbr_player = 0;
 	while (map[line] != NULL)
 	{
+		i = 0;
 		while (map[line][i] != '\0')
 		{
 			if (map[line][i] == PLAYER)
-				++nbr_player;
-			if (nbr_player != 1)
-				exit_routine(map, ERR_TOO_MANY_PLAYER);
+				nbr_player++;
 			++i;
 		}
 		++line;
 	}
+	if (nbr_player != 1)
+		exit_routine(map, ERR_TOO_MANY_PLAYER);
 }
 
 void check_exit(char **map)
@@ -96,20 +96,20 @@ void check_exit(char **map)
 	size_t nbr_exit;
 
 	line = 0;
-	i = 0;
 	nbr_exit = 0;
 	while (map[line] != NULL)
 	{
+		i = 0;
 		while (map[line][i] != '\0')
 		{
 			if (map[line][i] == EXIT)
 				++nbr_exit;
-			if (nbr_exit != 1)
-				exit_routine(map, ERR_TOO_MANY_EXIT);
 			++i;
 		}
 		++line;
 	}
+	if (nbr_exit != 1)
+		exit_routine(map, ERR_TOO_MANY_EXIT);
 }
 
 void check_collectible(char **map)
@@ -119,20 +119,20 @@ void check_collectible(char **map)
 	size_t nbr_collectible;
 
 	line = 0;
-	i = 0;
 	nbr_collectible = 0;
 	while (map[line] != NULL)
 	{
+		i = 0;
 		while (map[line][i] != '\0')
 		{
 			if (map[line][i] == COLLECTIBLE)
 				++nbr_collectible;
-			if (nbr_collectible == 0)
-				exit_routine(map, ERR_NO_COLLECTIBLE);
 			++i;
 		}
 		++line;
 	}
+	if (nbr_collectible == 0)
+		exit_routine(map, ERR_NO_COLLECTIBLE);
 }
 
 void check_first_last_char(char **map, size_t last_char)
@@ -157,7 +157,7 @@ void map_check(char **map, size_t map_line)
 
 	line = 0;
 	len_map_line = ft_strlen(map[line]);
-	check_map_component(map);
+	check_map_component(map, len_map_line - 1);
 	check_len_line(map, len_map_line);
 	check_first_last_line(map, map_line);
 	check_first_last_char(map, len_map_line - 1);

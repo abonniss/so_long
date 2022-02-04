@@ -80,6 +80,17 @@ typedef struct      s_game
 	void	*img_path;
 	void	*img_player;
 	void	*img_door;
+	void	*img_collec;
+    char	*xpm_data_path;
+	char	*xpm_data_wall;
+	char	*xpm_data_player;
+	char	*xpm_data_door;
+	char	*xpm_data_collec;
+	// void	*position;
+	int		img_width;
+	int		img_height;
+	size_t	y_player;
+	size_t	x_player;
 }                   t_game;
 
 char    **get_map_from_file(const char *file_name);
@@ -93,18 +104,22 @@ void    check_file_type(const char *file_name);
 void    check_file(const char *file_name);
 
 int     exit_routine(char **map, int error_nbr);
+void    exit_mlx(t_game **game);
 void    free_map(char **map);
 
 void    check_first_last_line(char **map, size_t map_line);
 void    check_len_line(char **map, size_t len_line);
-void    check_map_component(char **map);
+void    check_map_component(char **map, size_t map_line);
 void    check_player(char **map);
 void    check_exit(char **map);
 void    check_collectible(char **map);
 void    check_first_last_char(char **map, size_t last_char);
 void    map_check(char **map, size_t map_line);
 
+void    set_player_position(t_game **game);
+
 void    print_map(t_game **game);
+void    get_images(t_game **game);
 
 
 

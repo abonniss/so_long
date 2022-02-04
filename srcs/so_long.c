@@ -6,7 +6,7 @@
 /*   By: abonniss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 22:05:53 by abonniss          #+#    #+#             */
-/*   Updated: 2022/01/21 21:53:36 by abonniss         ###   ########.fr       */
+/*   Updated: 2022/02/04 09:10:23 by abonniss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ t_game *create_map(void)
 	new_game = ft_calloc(1, sizeof(t_game));
 	if (new_game == NULL)
 		return (NULL);
+	new_game->xpm_data_path = "./img/path.xpm";
+	new_game->xpm_data_wall = "./img/choco.xpm";
+	new_game->xpm_data_player = "./img/player.xpm";
+	new_game->xpm_data_door = "./img/door.xpm";
+	new_game->xpm_data_collec = "./img/collectible.xpm";
+	new_game->img_width = 100;
+	new_game->img_height = 100;
 	return (new_game);
 }
 
@@ -36,7 +43,8 @@ int main (int argc, char **argv)
 	if (map == NULL || game == NULL)
 		return (EXIT_FAILURE);
 	game->map = map;
-	// print_map(&game);
+	set_player_position(game);
+	print_map(&game);
 	
 
 

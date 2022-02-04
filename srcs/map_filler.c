@@ -71,5 +71,7 @@ char **get_map_from_file(const char *file_name)
 	map = get_memory_space_for_tab_line(map_line);
 	fill_map(file_name, map);
 	map_check(map, map_line);
+	ft_printf("Map is OK\n");
+	
 	return (map);
 }
