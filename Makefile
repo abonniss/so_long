@@ -53,10 +53,13 @@ SRCS += so_long.c
 SRCS += file_checker.c
 SRCS += map_filler.c
 SRCS += map_checker.c
+SRCS += image_access_checker.c
 SRCS += exit_routines.c
 SRCS += print_map.c
-SRCS += player.c
+SRCS += initialize_player_collectible.c
 SRCS += hook.c
+SRCS += end_game.c
+SRCS += display_map_components.c
 
 #HEADERS
 HEADERS += so_long.h

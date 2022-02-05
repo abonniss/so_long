@@ -20,7 +20,6 @@ void exit_mlx(t_game **game)
 	if ((*game)->mlx_win != NULL)
 		free((*game)->mlx_win);
 	free(game);
-	ft_putendl_fd("MLX Error", STDERR_FILENO);
 }
 
 int exit_routine(char **map, int error_nbr)

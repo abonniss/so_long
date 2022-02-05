@@ -61,11 +61,21 @@
 # define COLLECTIBLE                'C'
 # define EXIT                       'E'
 
-# define KEY_W_UP                      119
-# define KEY_S_DOWN                    115
-# define KEY_A_LEFT                    97
-# define KEY_D_RIGHT                   100
-# define KEY_ESC	                   27
+# define KEY_W_UP                   119
+# define KEY_S_DOWN                 115
+# define KEY_A_LEFT                 97
+# define KEY_D_RIGHT                100
+# define KEY_ESC	                113 // 'Q'q
+
+# define NBR_IMAGES   				4
+# define IMG_PATH_PLAYER			"./img/player.xpm"
+# define IMG_PATH_DOOR				"./img/door.xpm"
+# define IMG_PATH_COLLECTIBLE		"./img/collectible.xpm"
+# define IMG_PATH_WALL				"./img/choco.xpm"
+# define IMG_PATH_GROUND			"./img/path.xpm"
+
+# define CHARSET					"10PEC"
+
 
 
 #include "libftprintf.h"
@@ -84,11 +94,11 @@ typedef struct      s_game
     void    *mlx_ptr;
 	void    *mlx_win;
     void	*img_wall;
-	void	*img_path;
+	void	*img_ground;
 	void	*img_player;
 	void	*img_door;
 	void	*img_collec;
-    char	*xpm_data_path;
+    char	*xpm_data_ground;
 	char	*xpm_data_wall;
 	char	*xpm_data_player;
 	char	*xpm_data_door;
@@ -98,7 +108,8 @@ typedef struct      s_game
 	int		img_height;
 	size_t	y_player;
 	size_t	x_player;
-	size_t	count;
+	size_t	move_count;
+	size_t	collectible;
 }                   t_game;
 
 char    **get_map_from_file(const char *file_name);
@@ -110,6 +121,9 @@ void    check_file_extension(const char *file_name);
 void    check_file_access(const char *file_name);
 void    check_file_type(const char *file_name);
 void    check_file(const char *file_name);
+
+bool	check_image_access(void);
+bool	check_rights(const char *path);
 
 int     exit_routine(char **map, int error_nbr);
 void    exit_mlx(t_game **game);
@@ -126,11 +140,20 @@ void    map_check(char **map, size_t map_line);
 
 void    set_player_position(t_game **game);
 
-void display_map(t_game **game);
-void    print_map(t_game **game);
+void	display_map(t_game **game);
+void    map_initializer(t_game **game);
 void    get_images(t_game **game);
+void	display_ground(t_game **game);
+void	display_player(t_game **game);
+void	display_door(t_game **game);
+void	display_wall(t_game **game);
+void 	display_collectible(t_game **game);
+
 
 void    hook_event(t_game **game);
+void	initializer(t_game **game);
+void	ft_check_end_game(t_game **game);
+
 
 
 

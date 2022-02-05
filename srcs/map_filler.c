@@ -16,8 +16,8 @@ char **get_memory_space_for_tab_line(size_t map_line)
 {
 	char **map;
 
-	map = (char **)malloc(sizeof(char*) * map_line + 1);
-	if (map== NULL)
+	map = (char **)malloc(sizeof(char*) * (map_line + 1));
+	if (map == NULL)
 		exit_routine(NULL, ERR_MALLOC);
 	map[map_line] = NULL;
 	return (map);
@@ -71,7 +71,6 @@ char **get_map_from_file(const char *file_name)
 	map = get_memory_space_for_tab_line(map_line);
 	fill_map(file_name, map);
 	map_check(map, map_line);
-	ft_printf("Map is OK\n");
 	
 	return (map);
 }
