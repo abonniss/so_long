@@ -43,7 +43,7 @@ int main (int argc, char **argv)
 	if (map == NULL || game == NULL)
 		return (EXIT_FAILURE);
 	game->map = map;
-	set_player_position(game);
+	set_player_position(&game);
 	print_map(&game);
 	
 

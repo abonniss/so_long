@@ -61,6 +61,13 @@
 # define COLLECTIBLE                'C'
 # define EXIT                       'E'
 
+# define KEY_W_UP                      119
+# define KEY_S_DOWN                    115
+# define KEY_A_LEFT                    97
+# define KEY_D_RIGHT                   100
+# define KEY_ESC	                   27
+
+
 #include "libftprintf.h"
 #include "../mlx/mlx.h"
 #include <stdio.h>
@@ -91,6 +98,7 @@ typedef struct      s_game
 	int		img_height;
 	size_t	y_player;
 	size_t	x_player;
+	size_t	count;
 }                   t_game;
 
 char    **get_map_from_file(const char *file_name);
@@ -118,8 +126,11 @@ void    map_check(char **map, size_t map_line);
 
 void    set_player_position(t_game **game);
 
+void display_map(t_game **game);
 void    print_map(t_game **game);
 void    get_images(t_game **game);
+
+void    hook_event(t_game **game);
 
 
 
