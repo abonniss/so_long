@@ -33,15 +33,15 @@ int main (int argc, char **argv)
 	t_game	game;
 
 	map = NULL;
+	game = init_game();
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	check_file(argv[1]);
 	if (check_image_access() == false)
 		exit_routine(NULL, ERR_BAD_FD);
-	map = get_map_from_file(argv[1]);
+	map = get_map_from_file(argv[1], &game);
 	if (map == NULL)
 		exit_routine(NULL, ERR_MALLOC);
-	game = init_game();
 	game.map = map;
 	initializer(&game);
 	map_initializer(&game);

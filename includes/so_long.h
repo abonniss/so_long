@@ -13,8 +13,8 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define WINDOW_WIDHT 	            600
-# define WINDOW_HEIGHT 	            300
+# define GAME_NAME					"Terminator"
+
 # define MLX_ERROR	 	            1
 # define EXIT_FAILURE               -1
 # define EXIT_SUCCES                0
@@ -65,7 +65,7 @@
 # define KEY_S_DOWN                 115
 # define KEY_A_LEFT                 97
 # define KEY_D_RIGHT                100
-# define KEY_ESC	                113 // 'Q'q
+# define KEY_ESC	                53 // METTRE TOUCHE ESC
 
 # define NBR_IMAGES   				4
 # define IMG_PATH_PLAYER			"./img/player.xpm"
@@ -74,9 +74,9 @@
 # define IMG_PATH_WALL				"./img/choco.xpm"
 # define IMG_PATH_GROUND			"./img/path.xpm"
 
+#define IMG_SIZE_PXL				16
+
 # define CHARSET					"10PEC"
-
-
 
 #include "libftprintf.h"
 #include "../mlx/mlx.h"
@@ -103,16 +103,17 @@ typedef struct      s_game
 	char	*xpm_data_player;
 	char	*xpm_data_door;
 	char	*xpm_data_collec;
-	// void	*position;
 	int		img_width;
 	int		img_height;
 	size_t	y_player;
 	size_t	x_player;
 	size_t	move_count;
 	size_t	collectible;
+	size_t	map_rows;
+	size_t	map_lines;
 }                   t_game;
 
-char    **get_map_from_file(const char *file_name);
+char    **get_map_from_file(const char *file_name, t_game *game);
 char    **fill_map(const char *file_name, char **map);
 int     count_map_line(const char *file_name);
 char    **get_memory_space_for_tab_line(size_t map_line);
@@ -150,14 +151,19 @@ void 	get_image_player(t_game *game);
 void 	get_image_door(t_game *game);
 void 	get_image_collec(t_game *game);
 
-
-
 void	display_ground(t_game *game);
 void	display_player(t_game *game);
 void	display_door(t_game *game);
 void	display_wall(t_game *game);
 void 	display_collectible(t_game *game);
 
+int		ft_escape_key_and_wcross(t_game *game);
+int		ft_minimize(t_game *game);
+
+void	ft_move_up(t_game *game);
+void	ft_move_down(t_game *game);
+void	ft_move_left(t_game *game);
+void	ft_move_right(t_game *game);
 
 void    hook_event(t_game *game);
 void	initializer(t_game *game);

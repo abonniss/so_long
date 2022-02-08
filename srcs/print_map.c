@@ -23,15 +23,19 @@ void display_map(t_game *game)
 
 void map_initializer(t_game *game)
 {
-    game->mlx_ptr = mlx_init();
+    int	window_widht;
+	int	window_height;
+
+	window_height	= game->map_lines * IMG_SIZE_PXL;
+	window_widht	= game->map_rows * IMG_SIZE_PXL;
+	game->mlx_ptr	= mlx_init();
 	if (game->mlx_ptr == NULL)
 		return (exit_mlx(game));
-    game->mlx_win = mlx_new_window(game->mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, 
-				"My First Window");
+    game->mlx_win = mlx_new_window(game->mlx_ptr, window_widht, window_height, 
+				GAME_NAME);
 	if (game->mlx_win == NULL)
 		return (exit_mlx(game));
 	display_map(game);
 	hook_event(game);
-
 	mlx_loop(game->mlx_ptr);
 }

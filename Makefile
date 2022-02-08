@@ -61,6 +61,8 @@ SRCS += hook.c
 SRCS += end_game.c
 SRCS += get_images.c
 SRCS += display_map_components.c
+SRCS += window_event.c
+SRCS += moves.c
 
 #HEADERS
 HEADERS += so_long.h

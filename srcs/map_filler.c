@@ -61,16 +61,15 @@ char **fill_map(const char *file_name, char **map)
 	return (map);
 }
 
-char **get_map_from_file(const char *file_name)
+char **get_map_from_file(const char *file_name, t_game *game)
 {
-	size_t	map_line;
 	char	**map;
 
 	map = NULL;
-	map_line = count_map_line(file_name);
-	map = get_memory_space_for_tab_line(map_line);
+	game->map_lines = count_map_line(file_name);
+	map = get_memory_space_for_tab_line(game->map_lines);
 	fill_map(file_name, map);
-	map_check(map, map_line);
-	
+	map_check(map, game->map_lines);
+	game->map_rows = ft_strlen(map[0]);
 	return (map);
 }
