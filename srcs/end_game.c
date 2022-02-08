@@ -12,13 +12,13 @@
 
 #include  "so_long.h"
 
-void    ft_check_end_game(t_game **game)
+void    ft_check_end_game(t_game *game)
 {
-    if ((*game)->collectible == 0)
+    if (game->collectible == 0)
     {
-        mlx_destroy_window((*game)->mlx_ptr, (*game)->mlx_win);
-        free_map((*game)->map);
-        free((*game)->mlx_ptr);
+        mlx_destroy_window(game->mlx_ptr, game->mlx_win);
+        free_map(game->map);
+        free(game->mlx_ptr);
         exit(EXIT_SUCCESS);
         return ;
     }

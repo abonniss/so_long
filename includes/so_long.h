@@ -126,7 +126,7 @@ bool	check_image_access(void);
 bool	check_rights(const char *path);
 
 int     exit_routine(char **map, int error_nbr);
-void    exit_mlx(t_game **game);
+void    exit_mlx(t_game *game);
 void    free_map(char **map);
 
 void    check_first_last_line(char **map, size_t map_line);
@@ -138,21 +138,21 @@ void    check_collectible(char **map);
 void    check_first_last_char(char **map, size_t last_char);
 void    map_check(char **map, size_t map_line);
 
-void    set_player_position(t_game **game);
+void    set_player_position(t_game *game);
 
-void	display_map(t_game **game);
-void    map_initializer(t_game **game);
-void    get_images(t_game **game);
-void	display_ground(t_game **game);
-void	display_player(t_game **game);
-void	display_door(t_game **game);
-void	display_wall(t_game **game);
-void 	display_collectible(t_game **game);
+void	display_map(t_game *game);
+void    map_initializer(t_game *game);
+void    get_images(t_game *game);
+void	display_ground(t_game *game);
+void	display_player(t_game *game);
+void	display_door(t_game *game);
+void	display_wall(t_game *game);
+void 	display_collectible(t_game *game);
 
 
-void    hook_event(t_game **game);
-void	initializer(t_game **game);
-void	ft_check_end_game(t_game **game);
+void    hook_event(t_game *game);
+void	initializer(t_game *game);
+void	ft_check_end_game(t_game *game);
 
 
 

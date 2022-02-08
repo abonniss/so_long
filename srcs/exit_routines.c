@@ -12,14 +12,13 @@
 
 #include  "so_long.h"
 
-void exit_mlx(t_game **game)
+void exit_mlx(t_game *game)
 {
-	free_map((*game)->map);
-	if ((*game)->mlx_ptr != NULL)
-		free((*game)->mlx_ptr);
-	if ((*game)->mlx_win != NULL)
-		free((*game)->mlx_win);
-	free(game);
+	free_map(game->map);
+	if (game->mlx_ptr != NULL)
+		free(game->mlx_ptr);
+	if (game->mlx_win != NULL)
+		free(game->mlx_win);
 }
 
 int exit_routine(char **map, int error_nbr)
