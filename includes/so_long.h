@@ -142,7 +142,16 @@ void    set_player_position(t_game *game);
 
 void	display_map(t_game *game);
 void    map_initializer(t_game *game);
-void    get_images(t_game *game);
+
+// 			get_images.c			//
+void 	get_image_wall(t_game *game);		
+void 	get_image_ground(t_game *game);	
+void 	get_image_player(t_game *game);
+void 	get_image_door(t_game *game);
+void 	get_image_collec(t_game *game);
+
+
+
 void	display_ground(t_game *game);
 void	display_player(t_game *game);
 void	display_door(t_game *game);

@@ -9,7 +9,7 @@ void display_wall(t_game *game)
 
 	line = 0;
 	y = 0;
-	get_images(game);
+	get_image_wall(game);
 	while (game->map[line] != NULL)
 	{
 		i = 0;
@@ -25,6 +25,7 @@ void display_wall(t_game *game)
 		y += 16;
 		++line;
 	}
+	mlx_destroy_image(game->mlx_ptr, game->img_wall);
 }
 
 void display_ground(t_game *game)
@@ -36,7 +37,7 @@ void display_ground(t_game *game)
 
 	line = 0;
 	y = 0;
-	get_images(game);
+	get_image_ground(game);
 	while (game->map[line] != NULL)
 	{
 		i = 0;
@@ -51,6 +52,7 @@ void display_ground(t_game *game)
 		y += 16;
 		++line;
 	}
+	mlx_destroy_image(game->mlx_ptr, game->img_ground);
 }
 
 void display_player(t_game *game)
@@ -62,7 +64,7 @@ void display_player(t_game *game)
 
 	line = 0;
 	y = 0;
-	get_images(game);
+	get_image_player(game);
 	while (game->map[line] != NULL)
 	{
 		i = 0;
@@ -77,6 +79,7 @@ void display_player(t_game *game)
 		y += 16;
 		++line;
 	}
+	mlx_destroy_image(game->mlx_ptr, game->img_player);
 }
 
 void display_door(t_game *game)
@@ -88,7 +91,7 @@ void display_door(t_game *game)
 
 	line = 0;
 	y = 0;
-	get_images(game);
+	get_image_door(game);
 	while (game->map[line] != NULL)
 	{
 		i = 0;
@@ -103,6 +106,7 @@ void display_door(t_game *game)
 		y += 16;
 		++line;
 	}
+	mlx_destroy_image(game->mlx_ptr, game->img_door);
 }
 
 void display_collectible(t_game *game)
@@ -114,7 +118,7 @@ void display_collectible(t_game *game)
 
 	line = 0;
 	y = 0;
-	get_images(game);
+	get_image_collec(game);
 	while (game->map[line] != NULL)
 	{
 		i = 0;
@@ -129,4 +133,5 @@ void display_collectible(t_game *game)
 		y += 16;
 		++line;
 	}
+	mlx_destroy_image(game->mlx_ptr, game->img_collec);
 }

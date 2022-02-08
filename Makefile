@@ -59,6 +59,7 @@ SRCS += print_map.c
 SRCS += initialize_player_collectible.c
 SRCS += hook.c
 SRCS += end_game.c
+SRCS += get_images.c
 SRCS += display_map_components.c
 
 #HEADERS

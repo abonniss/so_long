@@ -19,6 +19,16 @@ void exit_mlx(t_game *game)
 		free(game->mlx_ptr);
 	if (game->mlx_win != NULL)
 		free(game->mlx_win);
+	if (game->img_wall != NULL)
+		free(game->img_wall);
+	if (game->img_ground != NULL)
+		free(game->img_ground);
+	if (game->img_player != NULL)
+		free(game->img_player);
+	if (game->img_collec != NULL)
+		free(game->img_collec);
+	if (game->img_door != NULL)
+		free(game->img_door);
 }
 
 int exit_routine(char **map, int error_nbr)
