@@ -6,29 +6,29 @@
 /*   By: abonniss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 12:30:42 by abonniss          #+#    #+#             */
-/*   Updated: 2022/02/03 12:30:47 by abonniss         ###   ########.fr       */
+/*   Updated: 2022/02/09 17:53:48 by abonniss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "so_long.h"
 
-char **get_memory_space_for_tab_line(size_t map_line)
+char	**get_memory_space_for_tab_line(size_t map_line)
 {
-	char **map;
+	char	**map;
 
-	map = (char **)malloc(sizeof(char*) * (map_line + 1));
+	map = (char **)malloc(sizeof(char *) * (map_line + 1));
 	if (map == NULL)
 		exit_routine(NULL, ERR_MALLOC);
 	map[map_line] = NULL;
 	return (map);
 }
 
-int count_map_line(const char *file_name)
+int	count_map_line(const char *file_name)
 {
 	char	*str;
 	int		i;
-	int 	fd;
-	
+	int		fd;
+
 	i = 0;
 	fd = open(file_name, O_RDONLY);
 	while (ft_get_next_line(fd, &str) > 0)
@@ -41,12 +41,12 @@ int count_map_line(const char *file_name)
 	return (i);
 }
 
-char **fill_map(const char *file_name, char **map)
+char	**fill_map(const char *file_name, char **map)
 {
-	char 	*str;
+	char	*str;
 	size_t	i;
 	int		fd;
-	
+
 	i = 0;
 	fd = open(file_name, O_RDONLY);
 	str = NULL;
@@ -61,7 +61,7 @@ char **fill_map(const char *file_name, char **map)
 	return (map);
 }
 
-char **get_map_from_file(const char *file_name, t_game *game)
+char	**get_map_from_file(const char *file_name, t_game *game)
 {
 	char	**map;
 

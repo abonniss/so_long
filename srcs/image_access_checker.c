@@ -6,15 +6,15 @@
 /*   By: abonniss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 17:40:56 by abonniss          #+#    #+#             */
-/*   Updated: 2022/02/05 17:41:01 by abonniss         ###   ########.fr       */
+/*   Updated: 2022/02/09 17:44:42 by abonniss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "so_long.h"
 
-bool check_rights(const char *path)
+bool	check_rights(const char *path)
 {
-	int fd;
+	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == BAD_FILE_DESCRIPTOR)
@@ -23,11 +23,11 @@ bool check_rights(const char *path)
 	return (true);
 }
 
-bool check_image_access(void)
+bool	check_image_access(void)
 {
-	size_t i;
-	const char *image_path[] = {IMG_PATH_GROUND, IMG_PATH_WALL, IMG_PATH_PLAYER, 
-								IMG_PATH_DOOR, IMG_PATH_COLLECTIBLE};
+	size_t		i;
+	const char	*image_path[] = {IMG_PATH_GROUND, IMG_PATH_WALL,
+		IMG_PATH_PLAYER, IMG_PATH_DOOR, IMG_PATH_COLLECTIBLE};
 
 	i = 0;
 	while (i <= NBR_IMAGES)

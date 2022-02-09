@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display_map_components.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abonniss <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/09 17:20:14 by abonniss          #+#    #+#             */
+/*   Updated: 2022/02/09 17:25:28 by abonniss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include  "so_long.h"
 
-void display_wall(t_game *game)
+void	display_wall(t_game *game)
 {
-	size_t i;
-	size_t x;
-	size_t y;
-	size_t line;
+	size_t	i;
+	size_t	x;
+	size_t	y;
+	size_t	line;
 
 	line = 0;
 	y = 0;
@@ -17,8 +29,8 @@ void display_wall(t_game *game)
 		while (game->map[line][i] != '\0')
 		{
 			if (game->map[line][i] == '1')
-				mlx_put_image_to_window(game->mlx_ptr,
-				game->mlx_win, game->img_wall, x, y);
+				mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
+					game->img_wall, x, y);
 			x += IMG_SIZE_PXL;
 			++i;
 		}
@@ -28,12 +40,12 @@ void display_wall(t_game *game)
 	mlx_destroy_image(game->mlx_ptr, game->img_wall);
 }
 
-void display_ground(t_game *game)
+void	display_ground(t_game *game)
 {
-	size_t i;
-	size_t x;
-	size_t y;
-	size_t line;
+	size_t	i;
+	size_t	x;
+	size_t	y;
+	size_t	line;
 
 	line = 0;
 	y = 0;
@@ -45,7 +57,8 @@ void display_ground(t_game *game)
 		while (game->map[line][i] != '\0')
 		{
 			if (game->map[line][i] == '0')
-				mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_ground, x, y);
+				mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
+					game->img_ground, x, y);
 			x += IMG_SIZE_PXL;
 			++i;
 		}
@@ -55,12 +68,12 @@ void display_ground(t_game *game)
 	mlx_destroy_image(game->mlx_ptr, game->img_ground);
 }
 
-void display_player(t_game *game)
+void	display_player(t_game *game)
 {
-	size_t i;
-	size_t x;
-	size_t y;
-	size_t line;
+	size_t	i;
+	size_t	x;
+	size_t	y;
+	size_t	line;
 
 	line = 0;
 	y = 0;
@@ -72,7 +85,8 @@ void display_player(t_game *game)
 		while (game->map[line][i] != '\0')
 		{
 			if (game->map[line][i] == 'P')
-				mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_player, x, y);
+				mlx_put_image_to_window(game->mlx_ptr,
+					game->mlx_win, game->img_player, x, y);
 			x += IMG_SIZE_PXL;
 			++i;
 		}
@@ -82,12 +96,12 @@ void display_player(t_game *game)
 	mlx_destroy_image(game->mlx_ptr, game->img_player);
 }
 
-void display_door(t_game *game)
+void	display_door(t_game *game)
 {
-	size_t i;
-	size_t x;
-	size_t y;
-	size_t line;
+	size_t	i;
+	size_t	x;
+	size_t	y;
+	size_t	line;
 
 	line = 0;
 	y = 0;
@@ -99,7 +113,8 @@ void display_door(t_game *game)
 		while (game->map[line][i] != '\0')
 		{
 			if (game->map[line][i] == 'E')
-				mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_door, x, y);
+				mlx_put_image_to_window(game->mlx_ptr,
+					game->mlx_win, game->img_door, x, y);
 			x += IMG_SIZE_PXL;
 			++i;
 		}
@@ -109,12 +124,12 @@ void display_door(t_game *game)
 	mlx_destroy_image(game->mlx_ptr, game->img_door);
 }
 
-void display_collectible(t_game *game)
+void	display_collectible(t_game *game)
 {
-	size_t i;
-	size_t x;
-	size_t y;
-	size_t line;
+	size_t	i;
+	size_t	x;
+	size_t	y;
+	size_t	line;
 
 	line = 0;
 	y = 0;
@@ -126,7 +141,8 @@ void display_collectible(t_game *game)
 		while (game->map[line][i] != '\0')
 		{
 			if (game->map[line][i] == 'C')
-				mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_collec, x, y);
+				mlx_put_image_to_window(game->mlx_ptr,
+					game->mlx_win, game->img_collec, x, y);
 			x += IMG_SIZE_PXL;
 			++i;
 		}

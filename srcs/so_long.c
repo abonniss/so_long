@@ -6,15 +6,15 @@
 /*   By: abonniss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 22:05:53 by abonniss          #+#    #+#             */
-/*   Updated: 2022/02/04 09:10:23 by abonniss         ###   ########.fr       */
+/*   Updated: 2022/02/09 18:04:17 by abonniss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "so_long.h"
 
-t_game init_game(void)
+t_game	init_game(void)
 {
-	t_game new_game;
+	t_game	new_game;
 
 	new_game.xpm_data_ground = IMG_PATH_GROUND;
 	new_game.xpm_data_wall = IMG_PATH_WALL;
@@ -27,9 +27,9 @@ t_game init_game(void)
 	return (new_game);
 }
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	char 	**map;
+	char	**map;
 	t_game	game;
 
 	map = NULL;
@@ -45,6 +45,5 @@ int main (int argc, char **argv)
 	game.map = map;
 	initializer(&game);
 	map_initializer(&game);
-	
 	return (EXIT_SUCCESS);
 }
