@@ -39,7 +39,6 @@ void    intialize_collectible(t_game *game)
 		}
 		++line;
 	}
-	ft_printf("Collectible %d\n", game->collectible);
 }
 
 void	initializer(t_game *game)

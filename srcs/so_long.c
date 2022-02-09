@@ -21,8 +21,8 @@ t_game init_game(void)
 	new_game.xpm_data_player = IMG_PATH_PLAYER;
 	new_game.xpm_data_door = IMG_PATH_DOOR;
 	new_game.xpm_data_collec = IMG_PATH_COLLECTIBLE;
-	new_game.img_width = 100;
-	new_game.img_height = 100;
+	new_game.img_width = 250;
+	new_game.img_height = 250;
 	new_game.collectible = 0;
 	return (new_game);
 }

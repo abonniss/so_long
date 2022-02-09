@@ -19,10 +19,10 @@ void display_wall(t_game *game)
 			if (game->map[line][i] == '1')
 				mlx_put_image_to_window(game->mlx_ptr,
 				game->mlx_win, game->img_wall, x, y);
-			x += 16;
+			x += IMG_SIZE_PXL;
 			++i;
 		}
-		y += 16;
+		y += IMG_SIZE_PXL;
 		++line;
 	}
 	mlx_destroy_image(game->mlx_ptr, game->img_wall);
@@ -46,10 +46,10 @@ void display_ground(t_game *game)
 		{
 			if (game->map[line][i] == '0')
 				mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_ground, x, y);
-			x += 16;
+			x += IMG_SIZE_PXL;
 			++i;
 		}
-		y += 16;
+		y += IMG_SIZE_PXL;
 		++line;
 	}
 	mlx_destroy_image(game->mlx_ptr, game->img_ground);
@@ -73,10 +73,10 @@ void display_player(t_game *game)
 		{
 			if (game->map[line][i] == 'P')
 				mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_player, x, y);
-			x += 16;
+			x += IMG_SIZE_PXL;
 			++i;
 		}
-		y += 16;
+		y += IMG_SIZE_PXL;
 		++line;
 	}
 	mlx_destroy_image(game->mlx_ptr, game->img_player);
@@ -100,10 +100,10 @@ void display_door(t_game *game)
 		{
 			if (game->map[line][i] == 'E')
 				mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_door, x, y);
-			x += 16;
+			x += IMG_SIZE_PXL;
 			++i;
 		}
-		y += 16;
+		y += IMG_SIZE_PXL;
 		++line;
 	}
 	mlx_destroy_image(game->mlx_ptr, game->img_door);
@@ -127,10 +127,10 @@ void display_collectible(t_game *game)
 		{
 			if (game->map[line][i] == 'C')
 				mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_collec, x, y);
-			x += 16;
+			x += IMG_SIZE_PXL;
 			++i;
 		}
-		y += 16;
+		y += IMG_SIZE_PXL;
 		++line;
 	}
 	mlx_destroy_image(game->mlx_ptr, game->img_collec);

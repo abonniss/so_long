@@ -71,10 +71,10 @@
 # define IMG_PATH_PLAYER			"./img/player.xpm"
 # define IMG_PATH_DOOR				"./img/door.xpm"
 # define IMG_PATH_COLLECTIBLE		"./img/collectible.xpm"
-# define IMG_PATH_WALL				"./img/choco.xpm"
+# define IMG_PATH_WALL				"./img/wall.xpm"
 # define IMG_PATH_GROUND			"./img/path.xpm"
 
-#define IMG_SIZE_PXL				16
+#define IMG_SIZE_PXL				40
 
 # define CHARSET					"10PEC"
 
