@@ -35,7 +35,7 @@
 # define ERR_MSG_TOO_SMALL          "The MAP doesn't have enough line"
 
 # define ERR_NO_WALL                5
-# define ERR_MSG_NO_WALL            "The MAP has has a breach"
+# define ERR_MSG_NO_WALL            "The MAP has a breach"
 
 # define ERR_NOT_RECTANGLE          6
 # define ERR_MSG_NOT_RECTANGLE      "The MAP isn't a rectangle"
@@ -67,7 +67,13 @@
 # define KEY_D_RIGHT                100
 # define KEY_ESC	                65307
 
-# define NBR_IMAGES   				4
+# define MV_UP   					1
+# define MV_DW   					2
+# define MV_RGT    					3
+# define MV_LFT   					4
+
+
+# define NBR_IMAGES   				5
 # define IMG_PATH_PLAYER			"./img/player.xpm"
 # define IMG_PATH_DOOR				"./img/door.xpm"
 # define IMG_PATH_COLLECTIBLE		"./img/collectible.xpm"
@@ -105,6 +111,7 @@ typedef struct s_game
 	char	*xpm_data_collec;
 	int		img_width;
 	int		img_height;
+	bool	end;
 	size_t	y_player;
 	size_t	x_player;
 	size_t	move_count;
@@ -124,7 +131,6 @@ void	check_file_type(const char *file_name);
 void	check_file(const char *file_name);
 
 bool	check_image_access(void);
-bool	check_rights(const char *path);
 
 int		exit_routine(char **map, int error_nbr);
 void	exit_mlx(t_game *game);
@@ -166,6 +172,6 @@ void	ft_move_right(t_game *game);
 
 void	hook_event(t_game *game);
 void	initializer(t_game *game);
-void	ft_check_end_game(t_game *game);
+void	ft_check_end_game(t_game *game, size_t line, size_t col, int move);
 
 #endif

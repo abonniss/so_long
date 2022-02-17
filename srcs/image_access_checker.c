@@ -12,7 +12,7 @@
 
 #include  "so_long.h"
 
-bool	check_rights(const char *path)
+static bool	check_rights(const char *path)
 {
 	int	fd;
 
@@ -26,11 +26,11 @@ bool	check_rights(const char *path)
 bool	check_image_access(void)
 {
 	size_t		i;
-	const char	*image_path[] = {IMG_PATH_GROUND, IMG_PATH_WALL,
+	const char	*image_path[NBR_IMAGES] = {IMG_PATH_GROUND, IMG_PATH_WALL,
 		IMG_PATH_PLAYER, IMG_PATH_DOOR, IMG_PATH_COLLECTIBLE};
 
 	i = 0;
-	while (i <= NBR_IMAGES)
+	while (i < NBR_IMAGES)
 	{
 		if (check_rights(image_path[i]) == false)
 			return (false);

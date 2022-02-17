@@ -25,10 +25,7 @@ void	ft_move_up(t_game *game)
 		if (game->map[line - 1][i] == 'C')
 			game->collectible -= 1;
 		if (game->map[line - 1][i] == 'E')
-		{
-			ft_check_end_game(game);
-			return ;
-		}
+			ft_check_end_game(game, line, i, MV_UP);
 		game->map[line - 1][i] = 'P';
 		game->y_player -= 1;
 		game->map[line][i] = '0';
@@ -53,10 +50,7 @@ void	ft_move_down(t_game *game)
 		if (game->map[line + 1][i] == 'C')
 			game->collectible -= 1;
 		if (game->map[line + 1][i] == 'E')
-		{
-			ft_check_end_game(game);
-			return ;
-		}
+			ft_check_end_game(game, line, i, MV_DW);
 		game->map[line + 1][i] = 'P';
 		game->y_player += 1;
 		game->map[line][i] = '0';
@@ -81,10 +75,7 @@ void	ft_move_left(t_game *game)
 		if (game->map[line][i - 1] == 'C')
 			game->collectible -= 1;
 		if (game->map[line][i - 1] == 'E')
-		{
-			ft_check_end_game(game);
-			return ;
-		}
+			ft_check_end_game(game, line, i, MV_LFT);
 		game->map[line][i - 1] = 'P';
 		game->x_player -= 1;
 		game->map[line][i] = '0';
@@ -109,10 +100,7 @@ void	ft_move_right(t_game *game)
 		if (game->map[line][i + 1] == 'C')
 			game->collectible -= 1;
 		if (game->map[line][i + 1] == 'E')
-		{
-			ft_check_end_game(game);
-			return ;
-		}
+			ft_check_end_game(game, line, i, MV_RGT);
 		game->map[line][i + 1] = 'P';
 		game->x_player += 1;
 		game->map[line][i] = '0';

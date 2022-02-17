@@ -24,6 +24,7 @@ t_game	init_game(void)
 	new_game.img_width = 250;
 	new_game.img_height = 250;
 	new_game.collectible = 0;
+	new_game.end = false;
 	return (new_game);
 }
 
@@ -38,10 +39,10 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	check_file(argv[1]);
 	if (check_image_access() == false)
-		exit_routine(NULL, ERR_BAD_FD);
+		return (exit_routine(NULL, ERR_BAD_FD));
 	map = get_map_from_file(argv[1], &game);
 	if (map == NULL)
-		exit_routine(NULL, ERR_MALLOC);
+		return (exit_routine(NULL, ERR_MALLOC));
 	game.map = map;
 	initializer(&game);
 	map_initializer(&game);
