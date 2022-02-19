@@ -72,7 +72,6 @@
 # define MV_RGT    					3
 # define MV_LFT   					4
 
-
 # define NBR_IMAGES   				5
 # define IMG_PATH_PLAYER			"./img/player.xpm"
 # define IMG_PATH_DOOR				"./img/door.xpm"
