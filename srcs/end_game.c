@@ -40,13 +40,19 @@ void	ft_check_end_game(t_game *game, size_t line, size_t i, int move)
 {
 	size_t	time;
 
-	time = 10;
+	time = 20;
 	if (game->collectible == 0)
 	{
 		game->end = true;
 		final_map_change(game, line, i, move);
+		game->move_count += 1;
+		ft_printf("%d\n", game->move_count);
 		while (--time != 0)
+		{
 			display_map(game);
+			mlx_string_put(game->mlx_ptr, game->mlx_win, 20, 20, 0x00FF00,
+				ft_itoa((int)game->move_count));
+		}
 		mlx_destroy_window(game->mlx_ptr, game->mlx_win);
 		free_map(game->map);
 		free(game->mlx_ptr);
